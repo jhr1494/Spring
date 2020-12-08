@@ -1,0 +1,17 @@
+package ex04.quiz;
+
+public class Car {
+	private IBettery battery; //모든 건전지를 받을수 있도록
+	
+	//생성자 주입
+	public Car(IBettery battery) {
+		this.battery = battery;
+	}
+	
+	//getter
+	public IBettery getBattery() {
+		return battery;
+				
+	}
+
+}

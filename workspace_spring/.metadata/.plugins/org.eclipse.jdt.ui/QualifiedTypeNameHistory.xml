@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="ex01.SpringTest"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.GenericApplicationContext"/>
+<fullyQualifiedTypeName name="ex04.quiz.IBettery"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="ex05.collection.MemberVO"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="ex05.collection.Custom"/>
+<fullyQualifiedTypeName name="ex06.autowired.Printer"/>
+<fullyQualifiedTypeName name="ex06.autowired.Printer2"/>
+<fullyQualifiedTypeName name="ex06.autowired.Document"/>
+<fullyQualifiedTypeName name="ex07.quiz.Moniter"/>
+<fullyQualifiedTypeName name="ex07.quiz.Mouse"/>
+<fullyQualifiedTypeName name="ex07.quiz.Keyboard"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.GenericXmlApplicationContext"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
+<fullyQualifiedTypeName name="javax.annotation.Resource"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+<fullyQualifiedTypeName name="ex02.construct.Chef"/>
+<fullyQualifiedTypeName name="ex03.setter.DatabaseDev"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
+<fullyQualifiedTypeName name="ex08.javaconfig.JavaConfig"/>
+<fullyQualifiedTypeName name="ex02.construct.Hotel"/>
+<fullyQualifiedTypeName name="ex03.setter.MemberDAO"/>
+<fullyQualifiedTypeName name="ex04.quiz.Battery1"/>
+<fullyQualifiedTypeName name="ex04.quiz.Car"/>
+<fullyQualifiedTypeName name="ex04.quiz.Airplane"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+<fullyQualifiedTypeName name="ex04.quiz.Battery2"/>
+</qualifiedTypeNameHistroy>

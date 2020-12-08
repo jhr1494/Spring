@@ -1,0 +1,36 @@
+package ex07.quiz;
+
+public class Computer {
+	
+	//키보드, 마우스, 모니터에 대한 멤버변수를 만들고 resource, autowired를 사용해서 자동주입
+	//main에서 computer의 info기능을 확인
+	
+	private Moniter moniter;
+	private Mouse mouse;
+	private Keyboard keyboard;
+	
+	
+	//생성자
+	public Computer() {
+		super();
+	}
+
+
+	public Computer(Moniter moniter, Mouse mouse, Keyboard keyboard) {
+		super();
+		this.moniter = moniter;
+		this.mouse = mouse;
+		this.keyboard = keyboard;
+	}
+	
+	
+
+
+
+	public void info() {
+		System.out.println("모니터 : ");
+		System.out.println("키보드 : ");
+		System.out.println("마우스 : ");
+	}
+
+}

@@ -1,0 +1,6 @@
+package ex04.quiz;
+
+public interface IBettery {
+	public void energy();
+
+}

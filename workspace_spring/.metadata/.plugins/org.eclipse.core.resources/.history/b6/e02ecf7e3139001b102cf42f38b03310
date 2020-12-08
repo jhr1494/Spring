@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.simple</groupId>
+  <artifactId>SpringMake</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  <!-- 한대 이상의 여러 원격 라이브러리를 다운로드 받을 때 dependencies로 묶습니다 -->
+  <!-- spring.core, spring-mvc -->
+  <dependencies>
+  
+  	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-core</artifactId>
+	    <version>5.0.7.RELEASE</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>5.0.7.RELEASE</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8 -->
+	<dependency>
+	    <groupId>com.oracle.ojdbc</groupId>
+	    <artifactId>ojdbc8</artifactId>
+	    <version>19.3.0.0</version>
+	</dependency>
+	
+	
+  </dependencies>
+  
+  <!-- 메이븐 빌드툴(원격에 있는 라이브러리를 다운로드 할 수 있습니다) -->
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+        <configuration>
+          <warSourceDirectory>webapp</warSourceDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
