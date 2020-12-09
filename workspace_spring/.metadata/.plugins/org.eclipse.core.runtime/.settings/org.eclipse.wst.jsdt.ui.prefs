@@ -1,9 +1,26 @@
+content_assist_add_import=false
+content_assist_autoactivation=false
+content_assist_autoactivation_delay=300
+content_assist_autoactivation_triggers_java=.
+content_assist_autoactivation_triggers_javadoc=@\#
+content_assist_autoinsert=true
+content_assist_case_sensitivity=false
+content_assist_fill_method_arguments=true
+content_assist_guess_method_arguments=false
+content_assist_insert_completion=true
+content_assist_prefix_completion=false
+content_assist_show_visible_proposals=true
+content_assist_sorter=org.eclipse.wst.jsdt.ui.RelevanceSorter
 eclipse.preferences.version=1
 fontPropagated=true
 org.eclipse.jface.textfont=1|Consolas|10.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 org.eclipse.wst.jsdt.ui.editor.tab.width=
+org.eclipse.wst.jsdt.ui.exception.name=e
 org.eclipse.wst.jsdt.ui.formatterprofiles.version=11
+org.eclipse.wst.jsdt.ui.gettersetter.use.is=true
 org.eclipse.wst.jsdt.ui.javadoclocations.migrated=true
+org.eclipse.wst.jsdt.ui.text.code_templates_migrated=true
+org.eclipse.wst.jsdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
 proposalOrderMigrated=true
 tabWidthPropagated=true
 useAnnotationsPrefPage=true
