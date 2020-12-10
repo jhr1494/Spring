@@ -27,7 +27,7 @@ public class ScoreDAOImpl implements ScoreDAO{
 	//이벤트발생 → ScoreServiceImpl(생성, DAO호출) → ScoreDAOImpl(생성, 반환) → 결과화면에 반환
 	@Override
 	public ArrayList<ScoreVO> getList() {
-		System.out.println(list.toString());
+//		System.out.println(list.toString());
 		return list;
 	}
 
