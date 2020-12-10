@@ -8,12 +8,7 @@
 </head>
 <body>
 
-	<h1>로그인 실패 !</h1>
-	
-	<hr>
-	<p>
-		<a href="req_quiz01">로그인 화면</a>
-	</p>
+	<h3>${id }님 회원가입을 축하합니다 !</h3>
 
 </body>
 </html>

@@ -8,12 +8,11 @@
 </head>
 <body>
 
-	<h1>로그인 실패 !</h1>
+	<h2>res_ex04 입니다</h2>
 	
-	<hr>
-	<p>
-		<a href="req_quiz01">로그인 화면</a>
-	</p>
+	모델 어트리뷰트 전달 : ${num } <br/>
+	모델 어트리뷰트 전달 : ${name }<br/>
+
 
 </body>
 </html>

@@ -7,13 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1>로그인 실패 !</h1>
-	
-	<hr>
-	<p>
-		<a href="req_quiz01">로그인 화면</a>
-	</p>
-
+	<h2>로그인 성공 페이지</h2>
 </body>
 </html>

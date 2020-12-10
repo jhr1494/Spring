@@ -8,11 +8,14 @@
 </head>
 <body>
 
-	<h1>로그인 실패 !</h1>
-	
-	<hr>
+	<h2>${user.id }(${user.name })님 가입은 환영합니다 !</h2>
+	<hr/>
 	<p>
-		<a href="req_quiz01">로그인 화면</a>
+	<h3>- 회원정보 -</h3>
+	ID : ${user.id }<br/>
+	PW : ${user.pw }<br/>
+	NAME : ${user.name }<br/>
+	E-MAIL : ${user.email }<br/>
 	</p>
 
 </body>

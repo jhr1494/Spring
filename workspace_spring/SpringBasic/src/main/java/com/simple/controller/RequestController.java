@@ -108,24 +108,46 @@ public class RequestController {
 	}
 	
 	//quiz01
-	//요청처리
+//	//화면요청처리
+//	@RequestMapping("/req_quiz01")
+//	public String req_quiz01() {
+//		return "request/req_quiz01";
+//	}
+//	
+//	//파라미터 전송
+//	@RequestMapping(value="/login", method=RequestMethod.POST)
+//	public String login(@RequestParam("id") String id,
+//						@RequestParam("pw") String pw) {
+//		
+//		if(id.equals("abc123") && pw.equals("xxx123")) {
+//			return "request/req_quiz01_ok";
+//		}else {
+//			return "request/req_quiz01_no";
+//		}
+//		
+//	}
+	
+	//quiz01_ans
+	//화면요청처리
 	@RequestMapping("/req_quiz01")
 	public String req_quiz01() {
 		return "request/req_quiz01";
 	}
 	
-	//파라미터 전송
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(@RequestParam("id") String id,
-						@RequestParam("pw") String pw) {
+	public String login(ReqVO vo) { //req객체로 받음
 		
-		if(id.equals("abc123") && pw.equals("xxx123")) {
-			return "request/req_quiz01_ok";
+		if(vo.getId().equals("abc123") && vo.getPw().equals("xxx123")) {
+			return "request/req_quiz01_ok"; //성공
 		}else {
-			return "request/req_quiz01_no";
+			return "request/req_quiz01_no";	//실패		
 		}
-		
 	}
+	
+	
+
+	
+	
 	
 	
 	

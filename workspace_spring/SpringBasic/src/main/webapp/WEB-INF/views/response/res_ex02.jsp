@@ -7,13 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1>로그인 실패 !</h1>
 	
-	<hr>
-	<p>
-		<a href="req_quiz01">로그인 화면</a>
-	</p>
+	<h2>res_ex02 입니다</h2>
+	
+	넘어온 값 : ${serverTime } <br/>
+	넘어온 값 : ${name }<br/>
+	넘어온 값 : ${addr }<br/>
 
 </body>
 </html>
