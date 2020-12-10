@@ -1,12 +1,11 @@
-package com.simple.service;
+package com.simple.dao;
 
 import java.util.ArrayList;
 
 import com.simple.command.ScoreVO;
 
-public interface ScoreService {
+public interface ScoreDAO {
 	
-	//서비스 클래스에서 구현할 메서드를 추상메서드로 선언
 	public void scoreRegist(ScoreVO vo); //등록
 	public ArrayList<ScoreVO> getList(); //목록
 

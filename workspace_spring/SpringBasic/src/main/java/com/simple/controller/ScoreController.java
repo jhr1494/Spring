@@ -1,10 +1,13 @@
 package com.simple.controller;
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -52,6 +55,16 @@ public class ScoreController {
 		
 		service.scoreRegist(vo);
 		
-		return null;
+		return "service/scoreResult";//결과화면
+	}
+	
+	//점수목록 요청
+	@RequestMapping("/scoreList")
+	public String scoreList(Model model) {
+		
+		ArrayList<ScoreVO> list = service.getList();
+		model.addAttribute("list", list); //모델에 list 저장
+		
+		return "service/scoreList"; //점수목록 화면
 	}
 }
