@@ -1,0 +1,23 @@
+--------- score Table ---------
+CREATE TABLE score(
+    num NUMBER(10),
+    name VARCHAR2(30),
+    kor VARCHAR2(30),
+    eng VARCHAR2(30),
+    math VARCHAR2(30)
+);
+ALTER TABLE score add CONSTRAINT score_pk PRIMARY KEY(num);
+CREATE SEQUENCE score_seq START WITH 1 INCREMENT BY 1 NOCACHE;
+
+--------- board Table ---------
+CREATE TABLE board(
+    num NUMBER(10),
+    name VARCHAR2(50),
+    title VARCHAR2(50),
+    content VARCHAR2(50)
+);
+
+ALTER TABLE board add CONSTRAINT board_pk PRIMARY KEY(num);
+
+CREATE SEQUENCE board_seq START WITH 1 INCREMENT BY 1 NOCACHE;
+

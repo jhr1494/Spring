@@ -21,7 +21,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- @Controller, @Componenet, @Repository, @Service 어노테이션이 부착되있는 클래스를 bean으로 생성합니다 -->
+	<!-- 
+	@Controller(컨트롤러기능),
+	@Repository(DAO기능),
+	@Service(서비스기능), 
+	@Componenet(그 외..) 어노테이션이 부착되있는 클래스를 bean으로 생성합니다 
+	-->
 	<context:component-scan base-package="com.simple.controller" />
 	<context:component-scan base-package="com.simple.service" /> <!-- service 패키지 추가 --> 
 	<context:component-scan base-package="com.simple.dao" />

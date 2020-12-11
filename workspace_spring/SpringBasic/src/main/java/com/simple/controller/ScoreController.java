@@ -3,6 +3,7 @@ package com.simple.controller;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.simple.command.ScoreVO;
 import com.simple.service.ScoreService;
@@ -67,4 +69,16 @@ public class ScoreController {
 		
 		return "service/scoreList"; //점수목록 화면
 	}
+	
+	
+	//점수삭제 요청
+	@RequestMapping("/scoreDelete")
+	public String scoreDelete(@RequestParam("num") int index) {
+		
+		service.scoreDelete(index);
+		
+		return "redirect:/service/scoreList"; //다시 목록으로
+	}
+	
+	
 }

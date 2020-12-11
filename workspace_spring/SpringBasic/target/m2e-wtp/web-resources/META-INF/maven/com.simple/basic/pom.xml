@@ -119,15 +119,50 @@
 			<version>1.2</version>
 		</dependency>
 	
-		<!-- Test -->
+		<!-- Test(스프링 버전과 호환이 안되는 문제 때문에 4.12버전으로 변경) -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>4.12</version><!-- 4.7버전은 스프링5버전과 호환불가 → 4.12로 변경-->
 			<scope>test</scope>
 		</dependency>        
 		
 		<!-- 필요한 라이브러리를 하나씩 추가...... -->
+		<!-- 오라클 커넥터 18c버전-->
+		<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8 -->
+		<dependency>
+			<groupId>com.oracle.ojdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>19.3.0.0</version>
+		</dependency>
+		
+		<!-- 마이바티스, 스프링에서 제공하는 템플릿 JDBC를 사용하는데 반드시 필요한 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- 데이터베이스 연결작업을 하는데 필요한 커넥션풀(히카리풀) -->
+		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+		<dependency>
+		    <groupId>com.zaxxer</groupId>
+		    <artifactId>HikariCP</artifactId>
+		    <version>2.7.8</version>
+		</dependency>
+		
+		<!-- 스프링 테스트환경을 제공 (Junit단위테스트와 접목시켜서 사용) → Junit과 함께 사용해야함 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${org.springframework-version}</version>
+		    <scope>test</scope>
+		</dependency>
+		
+				
+		
 	
 	</dependencies>
 	
