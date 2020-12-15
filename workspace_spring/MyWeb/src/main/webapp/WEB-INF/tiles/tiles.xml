@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+  <!-- 타일즈 사용 참고 : https://tiles.apache.org/framework/tutorial/index.html -->
+  
+  <!-- 타일즈 문서 선언 -->
+  <tiles-definitions>
+  
+  	<!-- 1. 타일즈 파일이 가져야 하는 layout을 정의  (단, 공통화면 */* 보다 위에 위치해야합니다.)
+  		template : 실제파일명
+  	-->
+  	<definition name="baseDefault" template="/WEB-INF/tiles/templateDefault.jsp">
+  		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+  		<put-attribute name="body" value="" /><!-- 동적으로 사용하기위해 value를 비워놓는다 -->
+  	</definition>
+  	
+  	<!-- daseDefault를 상속받고, 동적화면으로 구성 -->
+  	<!-- name값은 controller에서 돌아오는 return값 → 동적사용을 위해 *를 사용합니다-->
+  	<!-- baseDefault를 상속받아 body만 오버라이딩 -->
+  	<definition name="user/*" extends="baseDefault">
+  		<put-attribute name="body" value="/WEB-INF/views/user/{1}.jsp" />
+  	</definition>
+  	
+  	<!-- 2. 공통 뷰 모듈 매핑  -->
+  	<definition name="base" template="/WEB-INF/tiles/template.jsp">
+  		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+  		<put-attribute name="body" value="" />
+  		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+  	</definition>
+  	
+  	<!-- controller에서 home으로 돌아오면 타일즈 템플릿의 home.jsp로 맵핑 -->
+  	<definition name="*" extends="base">
+  		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp"></put-attribute>
+  	</definition>
+  	
+  	<definition name="*/*" extends="base">
+  		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+  	</definition>
+  	
+  	<definition name="*/*/*" extends="base">
+  		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+  	</definition>
+  	
+  	<!-- 3. 공통모듈로 사용하지 않고, 직접 맵핑 형태로 사용하는 경우 -->
+  	<!-- 특정파일을 모듈 없이 원래의 형태로 사용할경우 → 직접매핑(템플릿의 예외사항) -->
+  	<!-- 무조건 우선적으로 실행 (직접매핑 → 부분맵핑(ex:usre/*) → 전체(*/*) -->
+  	<definition name="aaa" template="/WEB-INF/views/aaa.jsp" />
+  	<definition name="test/bbb" template="/WEB-INF/views/test/bbb.jsp" />
+  	
+  	
+  	
+  	
+  	
+  
+  </tiles-definitions>

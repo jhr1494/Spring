@@ -45,7 +45,7 @@
 	      <param-name>forceEncoding</param-name>
 	      <param-value>true</param-value>
 	    </init-param>
-  </filter>
+  	</filter>
   
   <!-- 위에 지정한  encodingFilter이름을 모든 패턴에 적용-->
   <filter-mapping>

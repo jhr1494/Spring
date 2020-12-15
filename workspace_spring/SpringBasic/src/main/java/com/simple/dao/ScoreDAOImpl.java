@@ -11,10 +11,13 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.simple.command.ScoreVO;
+import com.simple.mapper.ScoreMapper;
 
 //자체가 싱글톤
 @Repository("scoreDAO") //scoreDAO이름으로 bean생성
 public class ScoreDAOImpl implements ScoreDAO{
+
+	
 
 //	//DB라고 가정
 //	private ArrayList<ScoreVO> list = new ArrayList<>();
@@ -90,6 +93,10 @@ public class ScoreDAOImpl implements ScoreDAO{
         jdbcTemplate.update(sql, new Object[] {index});
 
     }
+	
+	
+	
+	
 	
 
 }
