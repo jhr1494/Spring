@@ -43,8 +43,16 @@
 	</beans:bean>
 	
 	<!-- 어노테이션 bean생성 -->
+	<!-- 
 	<context:component-scan base-package="com.team404.controller" />
-	<context:component-scan base-package="com.team404.service" />
+	<context:component-scan base-package="com.team404.freeboard.service" /> 
+	-->
 	
+	<!-- include는 해당 어노테이션만 읽도록 추가, exclude는 해당 어노테이션을 제외, expression에는 어노테이션 타입  -->
+	<context:component-scan base-package="com.team404.*">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	</context:component-scan>
 	
 </beans:beans>

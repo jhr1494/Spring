@@ -40,7 +40,7 @@
 	
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.team404.mapper"/>
+	<mybatis-spring:scan base-package="com.team404.*.mapper"/>
 	
 	
 		

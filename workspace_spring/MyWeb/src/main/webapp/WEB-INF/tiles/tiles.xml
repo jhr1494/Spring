@@ -9,7 +9,7 @@
   <tiles-definitions>
   
   	<!-- 1. 타일즈 파일이 가져야 하는 layout을 정의  (단, 공통화면 */* 보다 위에 위치해야합니다.)
-  		template : 실제파일명
+  		template : 실제 jsp위치
   	-->
   	<definition name="baseDefault" template="/WEB-INF/tiles/templateDefault.jsp">
   		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />

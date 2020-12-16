@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
     <section>
@@ -37,34 +39,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td><a href="##">첫글</a></td>
-                                <td>홍길순</td>
-                                <td>~~~~~</td>
-                                <td>~~~~~</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><a href="##">두글</a></td>
-                                <td>홍길순</td>
-                                <td>~~~~~</td>
-                                <td>~~~~~</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><a href="##">세글</a></td>
-                                <td>홍길순</td>
-                                <td>~~~~~</td>
-                                <td>~~~~~</td>
-                            </tr>
+                            <c:forEach var="vo" items="${list }" varStatus="num">
+								<tr>
+									<td>${vo.bno }</td>
+									<td><a href="freeDetail?bno=${vo.bno }">${vo.title }</a></td>
+									<td>${vo.writer }</td>
+									<td><fmt:formatDate value="${vo.regdate }" pattern="yyyy년 MM월 dd일 hh:mm:ss " /></td>
+									<td><fmt:formatDate value="${vo.updatedate }" pattern="yyyy년 MM월 dd일 hh:mm:ss " /></td>
+								</tr>
+							</c:forEach>
                         </tbody>
                         
                     </table>
 
 
                     <!--페이지 네이션을 가져옴-->
-		    <form>
+		    
                     <div class="text-center">
                     <hr>
                     <ul class="pagination pagination-sm">
@@ -76,15 +66,28 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">다음</a></li>
                     </ul>
-                    <button type="button" class="btn btn-info" onclick="location.href='/myweb/freeBoard/freeRegist'">글쓰기</button>
+                    <button type="button" class="btn btn-info" onclick="location.href='freeRegist' ">글쓰기</button>
                     </div>
-		    </form>
 
                 </div>
             </div>
         </div>
 	</section>
 
-
+	<script>
+		window.onload = function () {
+			if(history.state === '') return;
+			
+			var msg = "${msg}"; //컨트롤러에서 넘어온 값
+			
+			if(msg !== ""){				
+				alert(msg);
+				//브라우저의 기록을 새롭게 변경(데이터, 페이징제목, 변경할 주소)
+				//이렇게 변경된 기록정보는 history.state객체를 통해서 확인이 가능합니다.
+				history.replaceState('', null, null );
+			}
+			
+		}
+	</script>
 
 

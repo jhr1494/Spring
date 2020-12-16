@@ -1,11 +1,13 @@
 --------- board Table ---------
-CREATE TABLE testBoard(
-    num NUMBER(10),
-    name VARCHAR2(50),
-    title VARCHAR2(50),
-    content VARCHAR2(100)
+create table freeboard(
+    bno number(10),
+    title VARCHAR2(200) not null,
+    writer VARCHAR2(50) not null,
+    content VARCHAR2(2000),
+    regdate date DEFAULT sysdate,
+    updatedate date DEFAULT SYSDATE
 );
 
-ALTER TABLE testBoard add CONSTRAINT testBoard_pk PRIMARY KEY(num);
+alter TABLE freeboard add CONSTRAINT freeboard_pk PRIMARY KEY (bno);
 
-CREATE SEQUENCE testBoard_seq START WITH 1 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE freeboard_seq INCREMENT by 1 START WITH 1 NOCACHE;
