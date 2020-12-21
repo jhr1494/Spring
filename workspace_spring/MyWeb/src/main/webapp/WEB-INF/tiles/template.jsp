@@ -10,6 +10,7 @@
     <title>공통모듈</title>
 
     <link href="${pageContext.request.contextPath }/resources/css/bootstrap.css" rel="stylesheet">
+    <!-- 제이쿼리 라이브러리 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!--개인 디자인 추가-->
     <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">

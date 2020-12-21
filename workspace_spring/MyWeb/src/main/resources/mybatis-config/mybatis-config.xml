@@ -7,6 +7,17 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.team404.command.FreeBoardVO" alias="FreeBoardVO"/>
+		<typeAlias type="com.team404.command.ReplyVO" alias="ReplyVO"/>
 	</typeAliases>
 
 </configuration>
+
+<!-- command 패키지안의 클래스들 이름을 약어로 사용하기 위해 선언 -->
+<!-- 패키지 전체 매핑
+<configuration>
+    <typeAliases>
+        <package name="com.team404.common.util"/>
+        <package name="com.team404.command"/>
+    </typeAliases>
+</configuration>
+ -->

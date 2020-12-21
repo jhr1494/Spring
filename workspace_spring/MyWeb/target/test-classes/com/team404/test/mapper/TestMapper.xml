@@ -3,12 +3,32 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.team404.mapper.BoardMapper">
-
-	<insert id="boardRegist">
-		insert into testBoard values(testBoard_seq.nextval, #{name}, #{title}, #{content})
+<mapper namespace="com.team404.test.mapper.TestMapper">
+	
+	<insert id="insertTest">
+		insert into freeboard(bno, title, writer, content) 
+		values(freeboard_seq.nextval, #{title}, #{writer}, #{content} )
 	</insert>
-
-
-
+	
+	<select id="selectTest" resultType="FreeBoardVO">
+		<!-- 
+		sql문으로 부등호(<,>,<=,>=)를 넣을경우 
+		tag로 인식하기 때문에 에러가 발생하므로
+		<![CDATA[~~~~]]>로 감싸서 사용한다
+		 -->
+		 
+		<!-- CDATA는 XML문서에서 부등호를 사용할 때, 문자열 그대로 인식되도록 하기 위해서 사용합니다. -->
+		<![CDATA[
+		SELECT * 
+		FROM (
+    		SELECT ROWNUM as rn,
+           	a.*
+    		from (
+    				SELECT * 
+          			FROM freeboard 
+          			ORDER BY bno desc)a
+		) where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	
 </mapper>

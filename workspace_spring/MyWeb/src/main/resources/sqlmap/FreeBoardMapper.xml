@@ -10,10 +10,56 @@
           values(FREEBOARD_SEQ.nextval, #{title}, #{writer}, #{content})
       </insert>
       
+      <!-- getList(페이징 전) 
       <select id="getList" resultType="FreeBoardVO">
       	select * from freeboard order by bno desc
+      </select> 
+      -->
+      
+      <!-- 동저쿼리 구문의 조건에는 map의 키값이나 vo의 setter값의 이름이 전달됩니다. -->
+      <select id="getList" resultType="FreeBoardVO">
+      	<![CDATA[
+		SELECT * 
+		FROM (
+    		SELECT ROWNUM as rn,
+           	a.*
+    		from (
+    				SELECT * 
+          			FROM freeboard 
+         ]]>			
+          		
+          	<if test="searchType=='title'">where title like '%'||#{searchName}||'%'</if>	
+          	<if test="searchType=='writer'">where writer like '%'||#{searchName}||'%'</if>
+          	<if test="searchType=='content'">where content like '%'||#{searchName}||'%'</if>
+          	<if test="searchType=='titcont'">where title like '%'||#{searchName}||'%' or content like '%'||#{searchName}||'%'</if>
+          	<if test="searchType==null or searchType==''">where 1 = 1</if>
+          	
+          	<!-- 
+          	<choose>
+          		<when test=""></when>
+          		<when test=""></when>
+          		<otherwise></otherwise>
+          	</choose>
+          	 -->
+          			
+        <![CDATA[  			
+          			ORDER BY bno desc)a
+		) where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
       </select>
 		
+	  <select id="getTotal" resultType="int"> <!-- 검색조건에 맞춰서 total변경 -->
+	  	select count(*) as total 
+	  	from freeboard
+	  	<if test="searchType=='title'">where title like '%'||#{searchName}||'%'</if>	
+        <if test="searchType=='writer'">where writer like '%'||#{searchName}||'%'</if>
+        <if test="searchType=='content'">where content like '%'||#{searchName}||'%'</if>
+        <if test="searchType=='titcont'">where title like '%'||#{searchName}||'%' or content like '%'||#{searchName}||'%'</if>
+        <if test="searchType==null or searchType==''">where 1 = 1</if>
+          	
+	  	
+	  </select>
+
 	  <select id="getContent" resultType="FreeBoardVO">
 		select * from freeboard where bno = #{bno}
 	  </select>
@@ -26,6 +72,7 @@
 	  <delete id="delete">
 	  	delete from freeboard where bno = #{bno}
 	  </delete>
+	  
 
 
 </mapper>

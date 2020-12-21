@@ -1,6 +1,7 @@
 package com.team404.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team404.command.FreeBoardVO;
+import com.team404.common.util.Criteria;
+import com.team404.common.util.PageVO;
 import com.team404.freeboard.service.FreeBoardService;
 
 @Controller
@@ -22,17 +25,56 @@ public class FreeBoardController {
 	private FreeBoardService freeBoardSevice;
 	
 	//화면처리
-	//글 목록
+//	//글 목록 ---1. 기본방식(페이지네이션 전)
+//	@RequestMapping("/freeList")
+//	public String freeList(Model model) {
+//		
+//		//화면으로 넘어갈 때 글 정보를 가지고 갈 수 있도록 처리 getList()로 조회하 결과를 리스트 화면에 출력
+//		ArrayList<FreeBoardVO> list = freeBoardSevice.getList();
+//		model.addAttribute("list", list);
+//		
+//		return "freeBoard/freeList";
+//	}
+	
+	//글 목록 ---페이지네이션 후
 	@RequestMapping("/freeList")
-	public String freeList(Model model) {
+	public String freeList(Model model, Criteria cri) {
 		
-		//화묜으로 넘어갈 때 글 정보를 가지고 갈 수 있도록 처리 getList()로 조회하 결과를 리스트 화면에 출력
-		ArrayList<FreeBoardVO> list = freeBoardSevice.getList();
-		model.addAttribute("list", list);
+		/*
+		 * //2. 페이지방식 
+		 * int total = freeBoardSevice.getTotal(); 
+		 * System.out.println(total);
+		 * PageVO pageVO = new PageVO(cri, total);
+		 * 
+		 * ArrayList<FreeBoardVO> list = freeBoardSevice.getList(cri);
+		 * 
+		 * //화면에 전달할 값들 model.addAttribute("list", list); model.addAttribute("pageVO",
+		 * pageVO);
+		 */
+		
+		//3. 검색과 페이지
+//		System.out.println(cri.toString());
+		
+		ArrayList<FreeBoardVO> list = freeBoardSevice.getList(cri);
+//		System.out.println(list.toString());
+		
+		//
+		int total = freeBoardSevice.getTotal(cri); 
+		PageVO pageVO = new PageVO(cri, total);
+		 
+		//화면에 전달할 값들 
+		model.addAttribute("list", list); 
+		model.addAttribute("pageVO", pageVO);
+
 		
 		return "freeBoard/freeList";
 	}
 
+	
+	
+	
+	
+	
 	//글 등록 화면
 	@RequestMapping("/freeRegist")
 	public String freeRegist() {

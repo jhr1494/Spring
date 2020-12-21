@@ -11,3 +11,18 @@ create table freeboard(
 alter TABLE freeboard add CONSTRAINT freeboard_pk PRIMARY KEY (bno);
 
 CREATE SEQUENCE freeboard_seq INCREMENT by 1 START WITH 1 NOCACHE;
+
+
+--------------게ㅣ글 댓글 --------------
+create table FREEREPLY(
+    bno NUMBER(10), --글번호 FK
+    rno NUMBER(10), --댓글번호 PK
+    reply VARCHAR2(1000), --내용
+    replyId VARCHAR2(50), --글쓴이
+    replyPw VARCHAR2(50), --비밀번호
+    replydate date default sysdate, --등록일
+    updatedate date default sysdate --수정일
+);
+
+alter table FREEREPLY add CONSTRAINT freereply_pk PRIMARY KEY (rno);
+create SEQUENCE freereply_seq START WITH 1 INCREMENT by 1 NOCACHE;
