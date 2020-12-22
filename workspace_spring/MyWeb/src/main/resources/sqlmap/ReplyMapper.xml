@@ -11,7 +11,30 @@
 	</insert>
 	
 	<select id="getList" resultType="ReplyVO">
-		select * from FREEREPLY where bno = #{bno} order by rno desc
-	
+		<!-- select * from FREEREPLY where bno = #{bno} order by rno desc -->
+		<![CDATA[
+		SELECT *
+		FROM(SELECT rownum rn,
+		        a.*
+		     FROM(SELECT *
+		          FROM freereply
+		          WHERE bno = #{bno}
+		          order by rno desc) a
+		)where rn > (#{cri.pageNum}-1) * #{cri.amount} and rn <= #{cri.pageNum} * #{cri.amount}
+		]]>
 	</select>
+	
+	<update id="update">
+		update FREEREPLY set reply = #{reply}, updatedate = sysdate 
+		where rno = #{rno} and replyPw = #{replyPw}
+	</update>
+	
+	<select id="check" resultType="int">
+		select count(*) as result 
+		from FREEREPLY where rno = #{rno} and replyPw = #{replyPw}
+	</select>
+	
+	<delete id="delete">
+		delete from FREEREPLY where rno = #{rno}
+	</delete>
 </mapper>
