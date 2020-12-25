@@ -85,6 +85,8 @@
                         </div> 
                         -->
                         </div>
+                        
+                        <button type="button" class="form-control" id="moreList">게시글(더보기)</button>
                     </div>
                 </div>
             </div>
@@ -170,7 +172,7 @@
 							$("#replyId").val("");
 							$("#replyPw").val("");
 							alert("댓글 등록에 성공했습니다");
-							getList(); //목록요청 호출
+							getList(1, true) //목록요청 호출
 						}else{
 							alert("댓글 등록에 실패했습니다. 잠시후에 다시 시도하세요");
 							
@@ -183,12 +185,19 @@
 				
 			} //end regist
 			
+			//=========================================================
+			//더보기버튼핸들러
+			$("#moreList").click(function() {
+				getList(++pageNum, false);
+			});
+			
 			//페이지넘버선언
 			var pageNum = 1;
+			var strAdd = ""; //화면에 그려넣을 태그를 문자열의 형태로 추가(누적)
 			
 			//목록요청
 			getList(1); //상세화면 진입시에 리스트 목록을 가져옵니다.
-			function getList(pageNum) {
+			function getList(page, reset) { //(페이지번호, strAdd초기화여부)
 				
 				//select구문에서 필요한 값은 ? bno
 				var bno = "${vo.bno}";
@@ -197,14 +206,26 @@
 				//$.ajax() -- get, post, put, delete 공용적으로 처리하는 제이쿼리 기능
 				//$.getJSON(요청주소, 콜백함수) -- 단순히 get방식의 데이터만 얻어올 때 사용하는 기능
 				$.getJSON(
-					"../reply/getList/" + bno + "/" + pageNum,
-					function(data) {
+					"../reply/getList/" + bno + "/" + page,
+					function(dataList) {
+						//console.log(dataList);
 						
+						var total = dataList.total; //댓글전체개수
+						var data = dataList.list; //list를 꺼내서 data에 저장
+						
+						if(reset == true){ //멤버변수를 초기화해서 새롭게 데이터를 가져옴
+							pageNum = 1;
+							strAdd="";
+						}
+						
+						if(pageNum * 20 >= total){ //페이지번호 * 데이터수가 전체글보다 크면 더보기 비활성화
+							$("#moreList").css("display", "none");
+						}
 						if(data.length <= 0){ //댓글이 없는 경우 함수종료
 							return; //함수종료
 						}
 						
-						var strAdd = ""; //화면에 그려넣을 태그를 문자열의 형태로 추가
+						
 						for(var i = 0; i < data.length; i ++){
 							strAdd += "<div class='reply-wrap'>"
 							strAdd += "<div class='reply-image'>"
@@ -305,7 +326,8 @@
 							$("#modalReply").val(""); //수정창 비움
 							$("#modalPw").val(""); //비밀번호 창 비움
 							$("#replyModal").modal("hide"); //모달창내리기
-							getList(); //목록요청 호출
+							//location.reload(); //새로고침 ---- 에러없이 출력은 되나 사용안하는것이 좋음
+							getList(1, true); //목록요청 호출(페이지번호, 초기화여부)
 						}else{
 							$("#modalPw").val(""); //비밀번호 창 비움
 							alert("비밀번호가 틀렸습니다");
@@ -348,7 +370,7 @@
 							alert("댓글 삭제가 성공했습니다");
 							$("#modalPw").val("");
 							$("#replyModal").modal("hide"); //모달창내리기
-							getList(); //목록요청 호출
+							getList(1, true); //목록요청 호출
 							
 						}else if(data === 0){
 							alert("삭제시 에러가 발생했습니다. 관리자에게 문의하세요");

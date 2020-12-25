@@ -30,6 +30,12 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
+	public int getTotal(int bno) {
+		
+		return replyMapper.getTotal(bno);
+	}
+	
+	@Override
 	public int update(ReplyVO vo) {
 		//1. sql문을 2번 실행(비번확인(select검증), update실행)
 		//2. sql문을 한번에 실행
@@ -47,6 +53,8 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		return replyMapper.delete(vo);
 	}
+
+	
 	
 	
 

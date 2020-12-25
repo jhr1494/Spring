@@ -31,6 +31,7 @@
 	<context:component-scan base-package="com.simple.service" /> <!-- service 패키지 추가 --> 
 	<context:component-scan base-package="com.simple.dao" />
 	
+	
 	<!-- 서비스 클래스를 bean으로 생성 -->
 	<!-- <beans:bean id="service" class="com.simple.service.ScoreServiceImpl"></beans:bean> -->
 	

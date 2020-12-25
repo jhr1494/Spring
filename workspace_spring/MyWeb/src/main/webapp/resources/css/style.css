@@ -95,7 +95,7 @@ header .container {
 }
 /*부트스트랩의 드롭다운시 a태그 색상변경  */
 .dropdown-menu>li>a {
-	color: #f5f5f5;
+	color: #808080;
 }
 /*======슬라이더=======*/
 .slide-list {

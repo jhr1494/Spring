@@ -1,6 +1,7 @@
 package com.team404.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,7 +35,7 @@ public class ReplyController {
 	
 	//목록요청
 	@GetMapping("/getList/{bno}/{pageNum}")
-	public ArrayList<ReplyVO> getList(@PathVariable("bno") int bno,
+	public HashMap<String, Object> getList(@PathVariable("bno") int bno,
 									  @PathVariable("pageNum") int pageNum) {
 
 		//1. 화면에서 더보기 버튼을 생성하고, 처음실행할 때 pageNum 1번과 해당 게시글 번호를 보냅니다
@@ -48,10 +49,18 @@ public class ReplyController {
 		ArrayList<ReplyVO> list = replyService.getList(bno, cri);
 		
 		//게시글에 대한 토탈
+		int total = replyService.getTotal(bno);
+		
+//		System.out.println(list.size());
+//		System.out.println(total);
 		
 		//해쉬맵에 키, value로 저장해서 반환
+		HashMap<String, Object> map = new HashMap<>();
 		
-		return list;
+		map.put("list", list);
+		map.put("total", total);
+		
+		return map;
 	}
 	
 	//댓글 수정
@@ -65,7 +74,7 @@ public class ReplyController {
 	//댓글삭제
 	@PostMapping("/delete")
 	public int delete(@RequestBody ReplyVO vo) {
-		System.out.println(vo.toString());
+//		System.out.println(vo.toString());
 		int result = replyService.check(vo);
 		
 		if(result == 1) { //성공시

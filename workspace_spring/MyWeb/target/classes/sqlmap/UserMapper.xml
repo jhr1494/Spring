@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.team404.user.mapper.UserMapper">
+
+	<!-- 중복체크 -->
+	<select id="idCheck" resultType="int">
+		select count(*) as result from users where userId = #{userId} 
+	</select>
+	
+	<insert id="join">
+		insert into users(userId, userPw, userName, userPhone1, userPhone2, userEmail1, userEmail2, addrBasic, addrDetail, addrZipNum) 
+		values(#{userId}, #{userPw}, #{userName}, #{userPhone1}, #{userPhone2}, #{userEmail1}, #{userEmail2}, #{addrBasic}, #{addrDetail}, #{addrZipNum} )
+	</insert>
+	
+	<select id="login" resultType="UserVO">
+		select * from users where userId = #{id} and userPw = #{pw}
+	</select>
+
+
+
+</mapper>

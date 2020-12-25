@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
 	<section>
         <!--Toggleable / Dynamic Tabs긁어옴-->
         <div class="container">
@@ -24,11 +25,11 @@
                                 <tbody class="m-control">
                                     <tr>
                                         <td class="m-title">*ID</td>
-                                        <td><input class="form-control input-sm"></td>
+                                        <td><input class="form-control input-sm" value="${vo.userId }" readonly></td>
                                     </tr>
                                     <tr>
                                         <td class="m-title">*이름</td>
-                                        <td><input class="form-control input-sm"></td>
+                                        <td><input class="form-control input-sm" value="${vo.userName }"></td>
                                     </tr>
                                     <tr>
                                         <td class="m-title">*비밀번호</td>
@@ -41,11 +42,11 @@
                                     <tr>
                                         <td class="m-title">*E-mail</td>
                                         <td>
-                                            <input class="form-control input-sm">@
-                                            <select class="form-control input-sm sel">
-                                                <option>naver.com</option>
-                                                <option>gmail.com</option>
-                                                <option>daum.net</option>
+                                            <input class="form-control input-sm" value="${vo.userEmail1 }">@
+                                            <select class="form-control input-sm sel" >
+                                                <option ${vo.userEmail2 eq 'naver.com' ? 'selected' : '' } >naver.com</option>
+                                                <option ${vo.userEmail2 eq 'gmail.com' ? 'selected' : '' }>gmail.com</option>
+                                                <option ${vo.userEmail2 eq 'daum.net' ? 'selected' : '' }>daum.net</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -53,27 +54,27 @@
                                         <td class="m-title">*휴대폰</td>
                                         <td>
                                             <select class="form-control input-sm sel">
-                                                <option>010</option>
-                                                <option>011</option>
-                                                <option>017</option>
-                                                <option>018</option>
+                                                <option ${vo.userPhone1 eq '010'? 'selected' : '' }>010</option>
+                                                <option ${vo.userPhone1 eq '011'? 'selected' : '' }>011</option>
+                                                <option ${vo.userPhone1 eq '017'? 'selected' : '' }>017</option>
+                                                <option ${vo.userPhone1 eq '018'? 'selected' : '' }>018</option>
                                             </select>
-                                            <input class="form-control input-sm">
+                                            <input class="form-control input-sm" value="${vo.userPhone2 }">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="m-title">*우편번호</td>
-                                        <td><input class="form-control input-sm" readonly>
-                                        	<button type="button" class="btn btn-primary" id="addBtn">중복확인</button>
+                                        <td><input class="form-control input-sm" value="${vo.addrZipNum }" readonly>
+                                        	<button type="button" class="btn btn-primary" id="addBtn" onclick="goPopup()">주소찾기</button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="m-title">*주소</td>
-                                        <td><input class="form-control input-sm add"></td>
+                                        <td><input class="form-control input-sm add" value="${vo.addrBasic }"></td>
                                     </tr>
                                     <tr>
                                         <td class="m-title">*상세주소</td>
-                                        <td><input class="form-control input-sm add"></td>
+                                        <td><input class="form-control input-sm add" value="${vo.addrDetail }"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -121,3 +122,21 @@
             </div>
         </div>
     </section>
+    
+     <script>
+    	function goPopup() {
+    		var pop = window.open("${pageContext.request.contextPath}/resources/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+		}
+    	
+    	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo) {
+    		/* 
+    		$("#addrZipNum").val(zipNo);
+    		$("#addrBasic").val(roadAddrPart1);
+    		$("#addrDetail").val(addrDetail);
+			 */
+			document.getElementById("addrZipNum").value = zipNo;
+			document.getElementById("addrBasic").value = roadAddrPart1;
+			document.getElementById("addrDetail").value = addrDetail;
+		}
+    
+    </script>

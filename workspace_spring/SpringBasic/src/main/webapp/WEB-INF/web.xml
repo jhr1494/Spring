@@ -20,7 +20,10 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/servlet-context.xml</param-value>
+			<param-value><!-- 스프링 설정파일로 2개를 지정 -->
+				/WEB-INF/config/servlet-context.xml
+				/WEB-INF/config/interceptor-context.xml
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

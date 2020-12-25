@@ -37,4 +37,8 @@
 	<delete id="delete">
 		delete from FREEREPLY where rno = #{rno}
 	</delete>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) as total from FREEREPLY where bno = #{bno}
+	</select>
 </mapper>

@@ -13,7 +13,7 @@ alter TABLE freeboard add CONSTRAINT freeboard_pk PRIMARY KEY (bno);
 CREATE SEQUENCE freeboard_seq INCREMENT by 1 START WITH 1 NOCACHE;
 
 
---------------게ㅣ글 댓글 --------------
+--------------게시글 댓글 --------------
 create table FREEREPLY(
     bno NUMBER(10), --글번호 FK
     rno NUMBER(10), --댓글번호 PK
@@ -26,3 +26,20 @@ create table FREEREPLY(
 
 alter table FREEREPLY add CONSTRAINT freereply_pk PRIMARY KEY (rno);
 create SEQUENCE freereply_seq START WITH 1 INCREMENT by 1 NOCACHE;
+
+--------- users Table ---------
+CREATE TABLE users(
+    userId VARCHAR2(50) not null,
+    userPw VARCHAR2(50) not null,
+    userName VARCHAR2(50) not null,
+    userPhone1 VARCHAR2(50),
+    userPhone2 VARCHAR2(50),
+    userEmail1 VARCHAR2(50),
+    userEmail2 VARCHAR2(50),
+    addrBasic VARCHAR2(300),
+    addrDetail VARCHAR2(300),
+    addrZipNum VARCHAR2(50),
+    regdate date default sysdate
+);
+
+ALTER TABLE users ADD CONSTRAINT userid_pk PRIMARY KEY (userId);
