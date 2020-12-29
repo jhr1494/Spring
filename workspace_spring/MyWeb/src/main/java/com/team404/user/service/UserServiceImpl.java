@@ -24,9 +24,24 @@ public class UserServiceImpl implements UserService {
 		return userMapper.join(vo);
 	}
 
+//	@Override
+//	public UserVO login(String id, String pw) {
+//		return userMapper.login(id, pw);
+//	}
+
 	@Override
-	public UserVO login(String id, String pw) {
-		return userMapper.login(id, pw);
+	public UserVO login(UserVO vo) {
+		return userMapper.login(vo);
 	}
 
+	@Override
+	public UserVO getInfo(String userId) {
+		
+		return userMapper.getInfo(userId);
+	}
+
+
+	
+
+	
 }

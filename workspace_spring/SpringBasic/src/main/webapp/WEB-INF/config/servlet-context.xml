@@ -33,7 +33,16 @@
 	
 	
 	<!-- 서비스 클래스를 bean으로 생성 -->
-	<!-- <beans:bean id="service" class="com.simple.service.ScoreServiceImpl"></beans:bean> -->
+	<!-- <beans:bean id="service" class="com.simple.service.ScoreServiceImpl" />-->
 	
+	<!-- 파일업로드 설정(id를 반드시 multipartResolver선언) -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대업로드 가능한 크기 -->
+		<!-- 52428800 : 50MB → 최대업로드를 지정을 안할 경우 무제한이며, 공격당할 수 있음 -->
+		<beans:property name="maxUploadSize" value="52428800" /> 
+		
+		<!-- 인코딩 설정 -->
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
 	
 </beans:beans>

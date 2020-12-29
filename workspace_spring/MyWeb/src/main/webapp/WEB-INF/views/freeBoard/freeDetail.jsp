@@ -35,13 +35,15 @@
                                 <textarea class="form-control" rows="10" name='content' readonly>${vo.content }</textarea>
                             </div>
 
-                            <button type="button" class="btn btn-primary" onclick="location.href='freeModify?bno=${vo.bno }'">변경</button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='freeModify?bno=${vo.bno }&writer=${vo.writer }'">변경</button>
                             <button type="button" class="btn btn-dark" onclick="location.href='freeList'">목록</button>
                     </form>
                 </div>
             </div>
         </div>
         </section>
+        
+        
         
         <section style="margin-top: 80px;">
             <div class="container">

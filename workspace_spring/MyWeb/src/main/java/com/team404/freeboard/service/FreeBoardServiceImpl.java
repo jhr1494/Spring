@@ -31,6 +31,13 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	//조회 -- 페이징 후
 	@Override
 	public ArrayList<FreeBoardVO> getList(Criteria cri) {
+		
+		//Around 예시
+//		System.out.println("getList실행");
+//		//고의적 에러발생
+//		String s = null;
+//		s.equals("234");
+		
 		return freeBoardMapper.getList(cri);
 	}
 	

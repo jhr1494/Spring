@@ -5,12 +5,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team404.command.UserVO;
@@ -30,13 +32,23 @@ public class UserController {
 		return "user/userJoin";
 	}
 	
-	@RequestMapping("userLogin")
+	@RequestMapping("/userLogin")
 	public String userLogin() {
 		return "user/userLogin";
 	}
 	
-	@RequestMapping("userMypage")
-	public String userMypage() {
+	@RequestMapping("/userMypage")
+	public String userMypage(HttpSession session,
+							 Model model) {
+		//조인(user + board)데이터에 대한 처리방법
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		String userId = vo.getUserId();
+		
+		//1:N관계 맵핑으로 결과를 처리
+		UserVO userInfo = userService.getInfo(userId);
+//		System.out.println(userVO);
+		model.addAttribute("userInfo", userInfo);
+		
 		return "user/userMypage";
 	}
 	
@@ -67,25 +79,78 @@ public class UserController {
 	}
 	
 	//login
+//	@RequestMapping(value = "login", method = RequestMethod.POST)
+//	public String login(@RequestParam("userId") String id,
+//						@RequestParam("userPw") String pw,
+//						HttpSession session,
+//						RedirectAttributes RA) {
+//		
+//		UserVO vo = userService.login(id, pw);
+//		
+//		if(vo == null) {
+//			RA.addFlashAttribute("msg", "아이디와 비밀번호가 일치하지 않습니다.");
+//			return "redirect:/user/userLogin";
+//		}else {
+//			session.setAttribute("userVO", vo); //인터셉션 미구현
+//			RA.addFlashAttribute("vo", vo);
+//			return "redirect:/user/userMypage";
+//		}
+//		
+//	}
+	
+	
+	//PostHandler 처리 전
+//	@RequestMapping(value = "login", method = RequestMethod.POST)
+//	public String login(UserVO vo,
+//						Model model,
+//						HttpSession session) {
+//		
+//		//로그인 성공시 회원정보를 받아오고, 로그인 실패시 null을 반환 → 로그인 직후의 POSTHandler로 전환할 수 있다.(UserLoginSuccessHandler)
+//		UserVO result = userService.login(vo);
+//		
+//		if(result == null) {//로그인 실패
+//			model.addAttribute("msg", "아이디 비밀번호를 확인하세요");
+//			return "/user/userLogin";
+//		}else {
+//			//세션에 회원정보를 저장
+//			session.setAttribute("userVO", result);
+//
+//			return "redirect:/";
+//		}
+//	}
+	
+	
+	//PostHandler 처리
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(@RequestParam("id") String id,
-						@RequestParam("pw") String pw,
-						HttpSession session,
-						RedirectAttributes RA) {
+	public ModelAndView login(UserVO vo) {
+		//로그인 성공시 회원정보를 받아오고, 로그인 실패시 null을 반환
+		UserVO result = userService.login(vo);
 		
-		UserVO vo = userService.login(id, pw);
 		
-		if(vo == null) {
-			RA.addFlashAttribute("msg", "아이디와 비밀번호가 일치하지 않습니다.");
-			return "redirect:/user/userLogin";
-		}else {
-			session.setAttribute("userVO", vo); //인터셉션 미구현
-			RA.addFlashAttribute("vo", vo);
-			return "redirect:/user/userMypage";
+		ModelAndView mv = new ModelAndView(); //뷰와 model정보를 동시에 저장하는 객체
+		mv.setViewName("/user/userLogin"); //기존에 가지고있는 화면 정보 -- 로그인 실패시 기존화면으로
+		
+		//로그인 성공시 회원정보 저장, 로그인 실패시 msg정보 저장
+		if(result != null) { //로그인 성공
+			mv.addObject("login", result);
+		}else { //로그인 실패
+			mv.addObject("msg", "아이디 비밀번호를 확인하세요");
 		}
 		
+		return mv;
 	}
-	
+
+		
+		//로그아웃
+		@RequestMapping("/userLogout")
+		public String logout(HttpSession session) {
+			session.invalidate();
+			return "redirect:/"; //홈
+		}
+		
+		//로그인 구현 -> 권한처리
+		
+		
 	
 	
 	

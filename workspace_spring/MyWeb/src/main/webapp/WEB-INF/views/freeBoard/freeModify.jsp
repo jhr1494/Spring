@@ -25,7 +25,7 @@
                             </div>
                             <div class="form-group">
                                 <label>작성자</label>
-                                <input class="form-control" name='writer' value="${vo.writer }" >
+                                <input class="form-control" name='writer' value="${vo.writer }" readonly>
                             </div>    
                             <div class="form-group">
                                 <label>제목</label>
@@ -77,7 +77,7 @@
 				
 		var deleteBtn = document.getElementById("deleteBtn");
 		deleteBtn.onclick = function () {
-			document.freeUpdate.action = "freeDelete?bno=${vo.bno}"; //폼값의 action을 지정
+			document.freeUpdate.action = "freeDelete"; //폼값의 action을 지정
 			document.freeUpdate.submit(); //서브밋
 		}
 	
