@@ -51,10 +51,11 @@ ALTER TABLE users ADD CONSTRAINT userid_pk PRIMARY KEY (userId);
 create table SNSBOARD( 
     bno NUMBER(10) not null,
     writer VARCHAR2(50) not null,
-    content VARCHAR2(2000) not null,
-    uploadpath VARCHAR2(200),
-    filename VARCHAR2(50),
-    filerealname VARCHAR2(50),
+    content VARCHAR2(2000),
+    uploadpath VARCHAR2(200) not null,
+    fileloca VARCHAR2(50) not null,
+    filename VARCHAR2(50) not null,
+    filerealname VARCHAR2(50) not null,
     regdate date default sysdate
 );
 alter table SNSBOARD add constraint snsboard_pk primary key (bno);
